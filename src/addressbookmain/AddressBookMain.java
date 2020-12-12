@@ -4,6 +4,7 @@ package addressbookmain;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 class Person 
 {   
@@ -34,24 +35,35 @@ class AddressBookOperations
     
     public void addMultiplePerson()
     {
-        System.out.print("Enter first name:");
-        String firstName = sc.next();
-        System.out.print("Enter last name:");
-        String lastName = sc.next();
-        System.out.print("Enter address:");
-        String address = sc.next();
-        System.out.print("Enter city:");
-        String city = sc.next();
-        System.out.print("Enter state:");
-        String state = sc.next();
-        System.out.print("Enter zip:");
-        String zip = sc.next();
-        System.out.print("Enter phoennumber:");
-        String phoneNumber = sc.next();
+        System.out.print("enter firstname: ");
+        String searchFirstName = sc.next();
+        
+        Predicate<Person> pStream = s -> s.firstName.contains(searchFirstName);
+        boolean booleanResult = personList.stream().anyMatch(pStream); 
+            
+        if(booleanResult == true)
+        {
+            System.out.println("!!! Person Name Already Exist !!!");
+        }
+        else
+        {
+            System.out.print("Enter last name:");
+            String lastName = sc.next();
+            System.out.print("Enter address:");
+            String address = sc.next();
+            System.out.print("Enter city:");
+            String city = sc.next();
+            System.out.print("Enter state:");
+            String state = sc.next();
+            System.out.print("Enter zip:");
+            String zip = sc.next();
+            System.out.print("Enter phoennumber:");
+            String phoneNumber = sc.next();
 
-        Person personObject = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
-        personList.add(personObject);
-        System.out.println("---Person Inserted Succesfully---");
+            Person personObject = new Person(searchFirstName, lastName, address, city, state, zip, phoneNumber);
+            personList.add(personObject);
+            System.out.println("---Person Inserted Succesfully---");
+        }
     }
     
     public void editExisting()
