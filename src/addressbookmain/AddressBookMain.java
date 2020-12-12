@@ -2,6 +2,7 @@
 package addressbookmain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -25,7 +26,23 @@ class Person
         this.state = state;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
-    }    
+    }  
+    
+    public String getfName() {
+      return firstName;
+    }
+
+    public String getCity(){
+        return city;
+    }
+    
+    public String getState(){
+        return state;
+    }
+    
+    public String getZip(){
+        return zip;
+    }
 }
 
 class AddressBookOperations
@@ -128,6 +145,12 @@ class AddressBookOperations
         }
     }
     
+    public void sortFName()
+    {
+        System.out.println("Sorted Successfully");
+        personList.sort(Comparator.comparing(Person::getfName));
+    }
+    
     public void deletePerson()
     {
         System.out.print("Enter name to match and Delete : ");
@@ -161,7 +184,7 @@ public class AddressBookMain
         int temp = 1;
         while(temp > 0)
         {
-            System.out.println("[1.Check&AddPerson] [2.Edit] [3.Delete]");
+            System.out.println("[1.Check&AddPerson] [2.Edit] [3.Delete] [4.SortByFirstName]");
             System.out.print("Enter your choice : ");
             int choice = sc.nextInt();
             switch(choice)
@@ -173,6 +196,9 @@ public class AddressBookMain
                 break;
                 
                 case 3: operationsObject.deletePerson();
+                break;
+                
+                case 4: operationsObject.sortFName();
                 break;
                 
                 default: System.out.println("Invalid option");
