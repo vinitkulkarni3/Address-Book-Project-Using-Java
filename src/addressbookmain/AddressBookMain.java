@@ -114,7 +114,27 @@ class AddressBookOperations
                 System.out.println("No name found");
             }
         }
-    }  
+    }
+    
+    public void deletePerson()
+    {
+        System.out.print("Enter name to match and Delete : ");
+        String sear = sc.next();
+        for(Iterator<Person> itrr = personList.iterator(); itrr.hasNext();)
+        { 
+            Person p = (Person)itrr.next();
+            if(p.firstName.equals(sear))
+            {
+                System.out.println("---Removed succefully---");
+                itrr.remove();
+                break;
+            }
+            else
+            {
+                System.out.println("Invalid Name");
+           }
+                        }
+    }
 }
 
 public class AddressBookMain
@@ -129,7 +149,7 @@ public class AddressBookMain
         int temp = 1;
         while(temp > 0)
         {
-            System.out.println("[1.Check&AddPerson] [2.Edit]");
+            System.out.println("[1.Check&AddPerson] [2.Edit] [3.Delete]");
             System.out.print("Enter your choice : ");
             int choice = sc.nextInt();
             switch(choice)
@@ -138,6 +158,9 @@ public class AddressBookMain
                 break;
                 
                 case 2: operationsObject.editExisting();
+                break;
+                
+                case 3: operationsObject.deletePerson();
                 break;
                 
                 default: System.out.println("Invalid option");
