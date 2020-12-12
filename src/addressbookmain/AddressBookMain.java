@@ -32,7 +32,7 @@ class AddressBookOperations
     Scanner sc = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<Person>();
     
-    public void addAndEdit()
+    public void addMultiplePerson()
     {
         System.out.print("Enter first name:");
         String firstName = sc.next();
@@ -51,7 +51,7 @@ class AddressBookOperations
 
         Person personObject = new Person(firstName, lastName, address, city, state, zip, phoneNumber);
         personList.add(personObject);
-        System.out.println("---Inserted Succesfully---");
+        System.out.println("---Person Inserted Succesfully---");
     }
     
     public void editExisting()
@@ -154,7 +154,7 @@ public class AddressBookMain
             int choice = sc.nextInt();
             switch(choice)
             {
-                case 1: operationsObject.addAndEdit();
+                case 1: operationsObject.addMultiplePerson();
                 break;
                 
                 case 2: operationsObject.editExisting();
