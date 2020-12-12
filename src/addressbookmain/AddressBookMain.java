@@ -2,6 +2,7 @@
 package addressbookmain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 class Person 
@@ -53,6 +54,67 @@ class AddressBookOperations
         System.out.println("---Inserted Succesfully---");
     }
     
+    public void editExisting()
+    {
+        System.out.print("enter the name to edit: ");
+        String tempFirstName = sc.next();
+            
+        for(Iterator<Person> itrr = personList.iterator(); itrr.hasNext();)
+        { 
+            Person p = (Person)itrr.next();
+        
+            if(p.firstName.equals(tempFirstName))
+            {
+                System.out.println("1.lastname 2.adddress 3.city 4.state 5.zip 6.phonenumber");
+                int choice = sc.nextInt();
+                
+                if(choice == 1)
+                {
+                    System.out.println("enter last name to fix");
+                    String editLastName = sc.next();
+                    p.lastName = editLastName;
+                }
+                else if(choice == 2)
+                {
+                    System.out.println("enter address to fix");
+                    String editaddress = sc.next();
+                    p.address = editaddress; 
+                }                
+                else if(choice == 3)
+                {
+                    System.out.println("enter city to fix");
+                    String editCity = sc.next();
+                    p.city = editCity;
+                }
+                else if(choice == 4)
+                {
+                    System.out.println("enter state to fix");
+                    String editState = sc.next();
+                    p.state = editState;
+                }
+                else if(choice == 5)
+                {
+                    System.out.println("enter zip to fix");
+                    String editZip = sc.next();
+                    p.zip = editZip;
+                }
+                else if(choice == 6)
+                {
+                    System.out.println("enter phone to fix");
+                    String editPhone = sc.next();
+                    p.phoneNumber = editPhone;
+                }
+                else
+                {
+                    System.out.println("Invalid choice");
+                }
+            }
+            else
+            {
+                System.out.println("No name found");
+            }
+        }
+    }  
 }
 
 public class AddressBookMain
@@ -67,7 +129,7 @@ public class AddressBookMain
         int temp = 1;
         while(temp > 0)
         {
-            System.out.println("[1.Check&AddPerson]");
+            System.out.println("[1.Check&AddPerson] [2.Edit]");
             System.out.print("Enter your choice : ");
             int choice = sc.nextInt();
             switch(choice)
@@ -75,9 +137,12 @@ public class AddressBookMain
                 case 1: operationsObject.addAndEdit();
                 break;
                 
+                case 2: operationsObject.editExisting();
+                break;
+                
                 default: System.out.println("Invalid option");
                 break;
             }
         }
-    }    
+    } 
 }
