@@ -61,8 +61,23 @@ public class AddressBookMain
     {
         System.out.println("*-*-* WELCOME TO ADDRESS BOOK *-*-*");   
         
+        Scanner sc = new Scanner(System.in);
         AddressBookOperations operationsObject = new AddressBookOperations();
         
-        operationsObject.addAndEdit();
+        int temp = 1;
+        while(temp > 0)
+        {
+            System.out.println("[1.Check&AddPerson]");
+            System.out.print("Enter your choice : ");
+            int choice = sc.nextInt();
+            switch(choice)
+            {
+                case 1: operationsObject.addAndEdit();
+                break;
+                
+                default: System.out.println("Invalid option");
+                break;
+            }
+        }
     }    
 }
