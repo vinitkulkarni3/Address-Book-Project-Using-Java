@@ -168,7 +168,28 @@ class AddressBookOperations
             {
                 System.out.println("Invalid Name");
            }
-                        }
+        }
+    }
+    
+    public String sortByCity()
+    {
+                        
+        personList.sort(Comparator.comparing(Person::getCity));
+        System.out.println();
+        return "Sort By City Name Successful";
+    }
+    public String sortByState()
+    {
+        personList.sort(Comparator.comparing(Person::getState));
+        System.out.println();
+        return "Sort By State Name Successful";
+    }
+    
+    public String sortByZip()
+    {
+        personList.sort(Comparator.comparing(Person::getZip));
+        System.out.println();
+        return "Sort By Zip Code Successful";
     }
 }
 
@@ -199,6 +220,12 @@ public class AddressBookMain
                 break;
                 
                 case 4: operationsObject.sortFName();
+                break;
+                
+                case 5: System.out.println("---SORTING---");
+                        System.out.println("1.city 2.state 3.zip");
+                        int sortOption = sc.nextInt();
+                        String sortResult = (sortOption == 1 ? operationsObject.sortByCity() : sortOption == 2 ? operationsObject.sortByState() : operationsObject.sortByZip());
                 break;
                 
                 default: System.out.println("Invalid option");
